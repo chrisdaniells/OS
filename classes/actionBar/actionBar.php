@@ -7,23 +7,23 @@
 
 		private $registry;
 		private $iconOutput;
-		private $calenderOutput;
+		private $clockOutput;
 		private $actionBarOutput;
 
 		public function __construct($registry) {
 			$this->registry = $registry;
 		}
 
-		public function buildIcon() 
+		public function buildIcon()
 		{
 			if (!empty($this->registry)) {
 				foreach($this->registry as $program) {
-						$iconOuput = '<li class="actionBar-program-icon" data-program-id="' . $program['program-id'] . '" data-program-name="' . $program['name'] . '">' . $program['initials'] . '</li>';
+						$this->iconOutput = '<li class="actionBar-program-icon" data-program-id="' . $program['id'] . '" data-program-name="' . $program['name'] . '"><span>' . $program['initials'] . '</span><label>'. $program['name']  .'</label></li>';
 					}
 
 				$this->iconOutput =  '<nav>
-										<ul id="program-icons">' 
-											. $iconOuput .
+										<ul id="program-icons">'
+											. $this->iconOutput .
 										'</ul>
 									</nav>';
 
@@ -35,35 +35,45 @@
 			}
 		}
 
-		public function getIcon() 
+		public function getIcon()
 		{
 			if (!empty($this->iconOutput)) {
 				return $this->iconOutput;
 			} else {
 				error_log("Failed to execute getIcon(). No Icon Output Found");
 				return false;
-			}	
+			}
 		}
 
-		public function buildCalender() 
+		public function buildClock()
 		{
-			$this->calenderOutput = 'Test';
+			$this->clockOutput = '<calender><span>--:--</span></calender>';
 		}
 
-		public function getCalender() 
+		public function getClock()
 		{
-			if (!empty($this->calenderOutput)) {
-				return $this->calenderOutput;
+			if (!empty($this->clockOutput)) {
+				return $this->clockOutput;
 			} else {
 				error_log("Failed to execute getCalender(). No Calender Output Found");
 				return false;
 			}
 		}
 
-		public function buildActionBar() 
+		public function buildCalender()
 		{
-			if (!empty($this->iconOutput) && !empty($this->calenderOutput)) {
-				$this->actionBarOutput = '<actionBar>' . $this->iconOutput . $this->calenderOutput . '</actionBar>';
+
+		}
+
+		public function getCalender()
+		{
+
+		}
+
+		public function buildActionBar()
+		{
+			if (!empty($this->iconOutput) && !empty($this->clockOutput)) {
+				$this->actionBarOutput = '<actionBar>' . $this->iconOutput . $this->clockOutput . '</actionBar>';
 
 				return true;
 			} else {
@@ -81,5 +91,5 @@
 				return false;
 			}
 		}
-		
+
 	}

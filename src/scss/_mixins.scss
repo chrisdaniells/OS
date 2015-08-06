@@ -1,0 +1,73 @@
+@mixin transition($transition...) {
+  -webkit-transition: $transition;
+  -moz-transition: $transition;
+  -o-transition: $transition;
+  transition: $transition;
+}
+@mixin rotate($deg) {
+  -webkit-transform: rotate($deg); 
+  -moz-transform: rotate($deg); 
+  -o-transform: rotate($deg); 
+  -ms-transform: rotate($deg); 
+  transform: rotate($deg); 
+}
+@mixin rotateX($deg) {
+  -webkit-transform: rotateX($deg); 
+  -moz-transform: rotateX($deg); 
+  -o-transform: rotateX($deg); 
+  -ms-transform: rotateX($deg); 
+  transform: rotateX($deg); 
+}
+@mixin translate($val...) {
+  -webkit-transform: translate($val); 
+  -moz-transform: translate($val); 
+  -o-transform: translate($val);  
+  -ms-transform: translate($val); 
+  transform: translate($val); 
+}
+@mixin transformOrigin($val...) {
+  -ms-transform-origin: $val;
+  -webkit-transform-origin: $val;
+  -moz-transform-origin: $val;
+  transform-origin: $val;
+}
+@mixin transform($val){
+  -webkit-transform: $val;
+  -ms-transform: $val;
+  transform: $val;
+}
+@mixin borderRadius($radius) {
+  border-radius: $radius;
+  -moz-border-radius: $radius;
+  -webkit-border-radius: $radius;
+}
+@mixin boxShadow($shadow) {
+  box-shadow: $shadow;
+  -moz-box-shadow: $shadow;
+  -webkit-box-shadow: $shadow;
+}
+@mixin perspective($perspective) {
+  perspective: $perspective;
+  -webkit-perspective: $perspective;
+}
+@mixin placeholder() {
+  &::-webkit-input-placeholder {
+    @content
+  }
+  &:-moz-placeholder { /* Firefox 18- */
+    @content
+  }
+  &::-moz-placeholder {  /* Firefox 19+ */
+    @content
+  }
+  &:-ms-input-placeholder { 
+    @content
+  }
+}
+@mixin vertical-align {
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}

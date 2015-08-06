@@ -1,25 +1,7 @@
 <?php
 
-	// -- Load classes file
-	$rootDir = $_SERVER["DOCUMENT_ROOT"] . '/OS/classes/';
-	if (!is_dir($rootDir)) {
-		die('Fatal Error: Invalid Directory Path for ' . $_SERVER["DOCUMENT_ROOT"] . $rootDir);
-	}
-
-	foreach (scandir($rootDir) as $dir) {
-		if ('.' === $dir) continue;
-        if ('..' === $dir) continue;
-
-        $classDir = $rootDir . $dir;
-        foreach (scandir($classDir) as $file) {
-        	if ('.' === $file) continue;
-        	if ('..' === $file) continue;
-        	include  $classDir . '/' . $file;
-        }
-	}
-
 	// -- Load Function Files
-	$dir = $_SERVER["DOCUMENT_ROOT"] . '/OS/functions/';
+	$dir = $_SESSION['root'] . 'functions/';
 	if (!is_dir($dir)) {
 		die('Fatal Error: Invalid Directory Path for ' . $_SERVER["DOCUMENT_ROOT"] . $dir);
 	}
@@ -29,6 +11,9 @@
         if ('..' === $file) continue;
         include $dir . $file;
 	}
+
+	// -- Load Class Files
+	getClassFiles();
 
 	// -- Load Registry
 	$registry = new core\registry\registry();
@@ -43,7 +28,7 @@
     // -- Load actionBar
     $actionBar = new gui\actionBar\actionBar($registry->getRegistry());
     $actionBar->buildIcon();
-    $actionBar->buildCalender();
+    $actionBar->buildClock();
     if(!$actionBar->buildActionBar()) {
     	die("Fatal Error Detected. actionBar failed to Load. Please check error log");
     }

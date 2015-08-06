@@ -15,7 +15,7 @@
 		        0 => array(
 		                "id" => "example_program",
 		                "name" => "Example Program",
-		                "intials" => "EP",
+		                "initials" => "EP",
 		                "active" => 1,
 		                "filepath" => "exampleProgram"
 		            )
@@ -68,12 +68,19 @@
 		        error_log("No active programs found in registry.");
 		    }
 
-		    $returnValue = $fatalError === 1 ? false : true;
+			return $fatalError === 1 ? false : true;
 
-		    return $returnValue;
 		}
 
+        public function getRegistryProgramDetails($programId)
+        {
+            foreach ($this->registry as $program) {
+                if ($programId == $this->programId)
+                    return $program;
+            }
+            return false;
 
+        }
 
 
 	}

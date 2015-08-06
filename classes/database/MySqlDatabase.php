@@ -26,7 +26,7 @@ namespace database\MySql;
 			$this->con = new mysqli($this->db_host, $this->db_username, $this->db_password, $this->db_name);
 
 			if(mysqli_connect_error()) {
-				trigger_error("Failed to conencto to MySQL: " . mysql_connect_error(), E_USER_ERROR);
+				trigger_error("Failed to connect to to MySQL: " . mysql_connect_error(), E_USER_ERROR);
 			}
 		}
 
